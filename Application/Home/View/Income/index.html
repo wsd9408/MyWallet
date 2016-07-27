@@ -1,0 +1,196 @@
+<extend name="Public/base" />
+<block name="content">
+
+    <link rel="stylesheet" type="text/css" media="all" href="{$Think.const.PUBLIC_URL}daterangepicker/daterangepicker.css" />
+    <script type="text/javascript" src="{$Think.const.PUBLIC_URL}daterangepicker/moment.js"></script>
+    <script type="text/javascript" src="{$Think.const.PUBLIC_URL}daterangepicker/daterangepicker.js"></script>
+    <!-- 内容 -->
+    <div>
+        <!-- 页码显示栏 -->
+        <div class ="badoo">
+            {$pageList}
+        </div>
+    </div>
+
+    <div>
+        <table class="zebra" style="text-align: center;font-size: 20px;">
+            <thead>
+            <!--当前记录总金额与查询条件输入-->
+            <tr>
+                <form action="{:U('Income/findByCon')}" method="post">
+                <th class="col-sm-3">总收入：￥{$sum}</th>
+                    <th class="col-sm-1"></th>
+                <th class="col-sm-2" style="text-align: center">按条件查看</th>
+                <th class="col-sm-3">
+                    <div class="controls input-group date" id="daterange"  style="text-align: right;width:230px;">
+                        <input id="reservation" type="text" class="form-control" name="daterange">
+                        <span class="input-group-addon add-on"><i class="glyphicon glyphicon-calendar"></i></span>
+                    </div>
+                </th>
+                    <th class="col-sm-2">
+                        <div class="controls input-group">
+                            <select id="categoryCon" name="categoryCon" class="form-control" >
+                                <option value="全部">全部</option>
+                                <option value="零花钱">零花钱</option>
+                                <option value="生活费">生活费</option>
+                                <option value="工资">工资</option>
+                                <option value="奖金">奖金</option>
+                                <option value="其他">其他</option>
+                            </select>
+                        </div>
+                    </th>
+                <th  class="col-sm-1">
+                    <input type="submit" class="btn btn-success" value="查询"/>
+                </th>
+                </form>
+                </th>
+            </tr>
+            </thead>
+        </table>
+
+        <!--记录显示区域-->
+        <table class="zebra" style="text-align: center;font-size: 20px;">
+                <thead>
+                <tr>
+                    <th class="col-sm-1" style="text-align: center">编号</th>
+                    <th class="col-sm-2" style="text-align: center">金额</th>
+                    <th class="col-sm-2" style="text-align: center">类别</th>
+                    <th class="col-sm-2" style="text-align: center">日期</th>
+                    <th style="min-width: 250px;text-align: center;">备注</th>
+                    <th  class="col-sm-2" style="text-align: center">操作</th>
+                </tr>
+                </thead>
+
+                <foreach name="info" item="value">
+                    <tr>
+                        <td>{$num++}</td>
+                        <td>￥<span>{$value.money}</span></td>
+                        <td>{$value.category}</td>
+                        <td>{$value.record_date}</td>
+                        <td>{$value.remark}</td>
+                        <td>
+                            <button class="btn btn-warning" name="{$value.record_id}"  data-toggle="modal" data-target="#update" onclick="showUpdate(this);">修改</button>
+                            <button class="btn btn-default" name="{:U('Income/deleteRecord',array('record_id'=>$value['record_id']),'')}" data-toggle="modal" data-target="#delcfmModel" onclick="delcfm(this);">删除</button>
+                        </td>
+                    </tr>
+                </foreach>
+            </table>
+    </div>
+
+    <!--修改记录Modal-->
+    <div id="update" class="modal fade" role="dialog" aria-labelledby="gridSystemModalLabel">
+        <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="gridSystemModalLabel">修改记录</h4>
+            </div>
+            <form class="form-horizontal" role="form" action="{:U('Income/update')}" method="post">
+                <div class="modal-body">
+                    <input style="display:none" id="record_id" name="record_id" type="text"/>
+                    <div id="money" class="form-group">
+                        <label class="col-sm-3 control-label" for="moneyInput">收入金额</label>
+                        <div class="col-sm-6 controls input-group">
+                            <input id="moneyInput" class="form-control" name="money" type="text"/>
+                            <span class="input-group-addon">￥</span>
+                        </div>
+                    </div>
+
+                    <div id="date" class="form-group">
+                        <label class="col-sm-3 control-label" for="dateInput">日期</label>
+                        <div class="col-sm-6 controls input-group date" id="datetimepicker">
+                            <input id="dateInput" type="text" class="form-control" name="date">
+                            <span class="input-group-addon add-on"><i class="glyphicon glyphicon-calendar"></i></span>
+                        </div>
+                    </div>
+                    <div id="category" class="form-group">
+                        <label class="col-sm-3 control-label">类别</label>
+                        <div class="col-sm-6 controls input-group">
+                            <select id="categoryInput" name="category" class="form-control">
+                                <option value="零花钱">零花钱</option>
+                                <option value="生活费">生活费</option>
+                                <option value="工资">工资</option>
+                                <option value="奖金">奖金</option>
+                                <option value="其他">其他</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div id="remark" class="form-group">
+                        <label class="col-sm-3 control-label">备注</label>
+                        <div class="col-sm-6 controls input-group">
+                            <textarea id="remarkInput" class="form-control" name="remark" rows="3"></textarea>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                    <button type="submit" class="btn btn-primary">确认修改</button>
+                </div>
+            </form>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+    <!-- 信息删除确认Modal -->
+    <div class="modal fade" id="delcfmModel">
+        <div class="modal-dialog">
+            <div class="modal-content message_align">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                    <h4 class="modal-title">提示信息</h4>
+                </div>
+                <div class="modal-body">
+                    <p>您确认要删除吗？</p>
+                </div>
+                <div class="modal-footer">
+                    <input type="hidden" id="url"/>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                    <a  onclick="urlSubmit()" class="btn btn-success" data-dismiss="modal">确定</a>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+    <script type="text/javascript">
+
+        //弹出修改记录模态框
+        function showUpdate(obj) {
+            var record_id = obj.name;
+            var tds=$(obj).parent().parent().find('td');
+
+            $('#record_id').val(record_id);
+            $('#moneyInput').val(tds.eq(1).find('span').text());
+            $('#categoryInput').val(tds.eq(2).text());
+            $('#dateInput').val(tds.eq(3).text());
+            $('#remarkInput').val(tds.eq(4).text());
+        }
+
+        function delcfm(obj) {
+            $('#url').val(obj.name);//给会话中的隐藏属性URL赋值
+        }
+        function urlSubmit(){
+            var url=$.trim($("#url").val());//获取会话中的隐藏属性URL
+            window.location.href=url;
+
+        }
+
+        //尝试从控制器中提取开始日期，结束日期以及查找类别，若为空则分别设置为"1/1/2016"，当前日期以及“全部”
+        var startDate="{$startDate}";
+        var endDate="{$endDate}";
+        var categoryCon="{$categoryCon}";
+
+        if(startDate=="")
+            startDate="1/1/2016";
+        if(endDate==""){
+            var now = new Date();
+            endDate=(now.getMonth()+1)+"/"+now.getDate()+"/"+now.getFullYear();
+        }
+        if(categoryCon=="")
+            categoryCon="全部";
+        $('#reservation').daterangepicker({startDate:startDate,endDate:endDate});
+        $('#categoryCon').val(categoryCon);
+
+    </script>
+
+</block>

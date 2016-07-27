@@ -1,0 +1,62 @@
+<extend name="Public/base" />
+
+<block name="content">
+    <!-- 内容 -->
+
+    <!--左侧导航栏-->
+    <div id="SideNavigation" style="margin-top: 10px;">
+        <ul class="nav nav-tabs nav-stacked">
+            <li><a href="{:U('Statistics/index')}">总览</a></li>
+            <li><a href="{:U('Statistics/Income')}">收入统计</a></li>
+            <li class="active"><a href="{:U('Statistics/Expend')}">支出统计</a></li>
+            <li><a href="{:U('Statistics/TimeLine')}">时间轴</a></li>
+        </ul>
+    </div>
+
+    <!--信息显示区域-->
+    <div id="View" style="margin-top: 11px;">
+        <link href="{$Think.const.PUBLIC_URL}PieChart/css/style.css" type="text/css" rel="stylesheet" />
+        <style type="text/css">
+            *{margin:0;padding:0;list-style-type:none;}
+            #container{width:900px;margin:50px auto;}
+
+            #chart{display:block;margin:0 0 50px 0;float:left;cursor:pointer;}
+            #chartData{width:200px;margin:0 40px 0 0;float:right;border-collapse:collapse;box-shadow:0 0 1em rgba(0, 0, 0, 0.5);-moz-box-shadow:0 0 1em rgba(0, 0, 0, 0.5);-webkit-box-shadow:0 0 1em rgba(0, 0, 0, 0.5);background-position:0 -100px;}
+            #chartData th, #chartData td{padding:0.5em;border:1px dotted #666;text-align:left;}
+            #chartData th{border-bottom:2px solid #333;text-transform:uppercase;}
+            #chartData td{cursor:pointer;}
+            #chartData td.highlight{background:#e8e8e8;}
+            #chartData tr:hover td{background:#f0f0f0;}
+        </style>
+        <canvas id="chart" width="600" height="500"></canvas>
+        <table id="chartData" style="margin-top:10%">
+            <tr>
+                <th>类别</th><th>金额</th>
+            </tr>
+            <tr style="color:#AA3434">
+                <td>饮食</td><td>{$diet}</td>
+            </tr>
+            <tr style="color:#3370CC">
+                <td>服装</td><td>{$clothing}</td>
+            </tr>
+            <tr style="color:#ED7486">
+                <td>娱乐</td><td>{$amusement}</td>
+            </tr>
+            <tr style="color:#33AECC">
+                <td>运动</td><td>{$sport}</td>
+            </tr>
+            <tr style="color:#92AA34">
+                <td>交通</td><td>{$traffic}</td>
+            </tr>
+            <tr style="color:#057249">
+                <td>其他</td><td>{$other}</td>
+            </tr>
+        </table>
+
+        <div style="display:none">
+            <script src="http://s24.cnzz.com/stat.php?id=4273731&web_id=4273731" language="JavaScript"></script><script src="http://s20.cnzz.com/stat.php?id=5240441&web_id=5240441" language="JavaScript"></script>
+        </div>
+
+        <script type="text/javascript" src="{$Think.const.PUBLIC_URL}PieChart/js/pieChart.js"></script>
+    </div>
+</block>

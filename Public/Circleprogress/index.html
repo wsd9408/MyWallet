@@ -1,0 +1,26 @@
+<html>
+<head>
+<title>Circliful</title>
+
+<link href="css/jquery.circliful.css" rel="stylesheet" type="text/css" />
+<link href="css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+
+<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+<script src="js/jquery.circliful.min.js"></script>
+
+<style>
+body {
+    font-family: arial,verdana, sans-serif;
+    font-size: 12px;
+}
+</style>
+</head>
+<body>
+<div id="myStat" data-dimension="250" data-text="35%" data-info="New Clients" data-width="30" data-fontsize="38" data-percent="35" data-fgcolor="#61a9dc" data-bgcolor="#eee" data-fill="#ddd"></div>
+<script>
+$( document ).ready(function() {
+	$('#myStat').circliful();
+   });
+</script>
+</body>
+</html>

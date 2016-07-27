@@ -1,0 +1,111 @@
+/*CSS badoo style pagination*/
+
+div.badoo {
+	padding-right: 0px;
+	padding-left: 0px;
+	font-size: 16px;
+	padding-bottom: 10px;
+	color: #48b9ef;
+	padding-top: 10px;
+	font-family: arial, Helvetica, sans-serif;
+	background-color: #fff;
+	text-align: center;
+}
+div.badoo a {
+	border-right: #f0f0f0 2px solid;
+	padding-right: 10px;
+	border-top: #f0f0f0 2px solid;
+	padding-left: 10px;
+	padding-bottom: 4px;
+	margin: 0px 2px;
+	border-left: #f0f0f0 2px solid;
+	color: #48b9ef;
+	padding-top: 4px;
+	border-bottom: #f0f0f0 2px solid;
+	text-decoration: none;
+}
+div.badoo a:hover {
+	border-right: #ff5a00 2px solid; border-top: #ff5a00 2px solid;
+	border-left: #ff5a00 2px solid; color: #ff5a00; border-bottom: #ff5a00 2px solid
+}
+div.badoo a:active {
+	border-right: #ff5a00 2px solid; border-top: #ff5a00 2px solid;
+	border-left: #ff5a00 2px solid; color: #ff5a00; border-bottom: #ff5a00 2px solid
+}
+div.badoo span.current {
+	border-right: #ff5a00 2px solid; padding-right: 10px;
+	border-top: #ff5a00 2px solid; padding-left: 10px; font-weight: bold;
+	padding-bottom: 4px; border-left: #ff5a00 2px solid; color: #fff; padding-top: 4px;
+	border-bottom: #ff5a00 2px solid; background-color: #ff6c16
+}
+div.badoo span.disabled {
+	display: none
+}
+#addIncome{
+	display:inline;
+	float:left;
+	width:29%;
+	height:400px;
+	text-align: center;
+}
+#addExpend{
+	display:inline;
+	float:left;
+	width:29%;
+	height:400px;
+	text-align: center;
+}
+#remain{
+	display:inline;
+	height:400px;
+	width:400px;
+	float:left;
+}
+.btnAdd{
+	width:160px;
+	height:50px;
+	margin-top:60%;
+}
+#incomeInfo,#expendInfo{
+	margin:50px auto;
+	display:inline;
+	float:left;
+	width:50%;
+	height:400px;
+}
+
+#SideNavigation{
+	width:10%;
+	height:400px;
+	float:left;
+	display:inline;
+}
+#View{
+	width:90%;
+	height:400px;
+	float:left;
+	display:inline;
+}
+
+#userIcon{
+	width:38px;
+	height:28px;
+	float: left;
+	background: url("../img/user.png") center no-repeat;
+}
+
+.userInfo{
+	margin:20px auto;
+	width:600px;
+	height:400px;
+	font-size:22px;
+}
+.center{
+	margin:20px auto;
+	width:560px;
+	height:20px;
+}
+.left{
+	text-align: right;
+}
+

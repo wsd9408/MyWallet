@@ -1,0 +1,102 @@
+ <extend name="Public/base" />
+
+<block name="content">
+    <!--左侧导航栏-->
+    <div id="SideNavigation" style="margin-top: 10px">
+        <ul class="nav nav-tabs nav-stacked">
+            <li class="active"><a href="{:U('Statistics/index')}">总览</a></li>
+            <li><a href="{:U('Statistics/Income')}">收入统计</a></li>
+            <li><a href="{:U('Statistics/Expend')}">支出统计</a></li>
+            <li><a href="{:U('Statistics/TimeLine')}">时间轴</a></li>
+        </ul>
+    </div>
+
+    <!--信息显示区域-->
+    <div id="View" style="margin-top:11px;">
+        <script type="text/javascript" src="{$Think.const.PUBLIC_URL}ichartjs/ichart.1.2.min.js"></script>
+        <script type="text/javascript">
+            $(function(){
+                var incomeData=["{$incomeData[11]}","{$incomeData[10]}","{$incomeData[9]}","{$incomeData[8]}","{$incomeData[7]}","{$incomeData[6]}","{$incomeData[5]}","{$incomeData[4]}","{$incomeData[3]}","{$incomeData[2]}","{$incomeData[1]}","{$incomeData[0]}"];
+                var expendData=["{$expendData[11]}","{$expendData[10]}","{$expendData[9]}","{$expendData[8]}","{$expendData[7]}","{$expendData[6]}","{$expendData[5]}","{$expendData[4]}","{$expendData[3]}","{$expendData[2]}","{$expendData[1]}","{$expendData[0]}"];
+
+                var data = [
+                    {
+                        name : '支出',
+                        value:expendData,
+                        color:'#0d8ecf',
+                        line_width:2
+                    },
+                    {
+                        name : '收入',
+                        value:incomeData,
+                        color:'#ef7707',
+                        line_width:2
+                    }
+                ];
+
+                var labels = ["{$monthArray[11]}","{$monthArray[10]}","{$monthArray[9]}","{$monthArray[8]}","{$monthArray[7]}","{$monthArray[6]}","{$monthArray[5]}","{$monthArray[4]}","{$monthArray[3]}","{$monthArray[2]}","{$monthArray[1]}","{$monthArray[0]}",];
+                var line = new iChart.LineBasic2D({
+                    render : 'canvasDiv',
+                    data: data,
+                    align:'center',
+                    title : '过去12个月收支总览',
+                    subtitle : '',
+                    footnote : '',
+                    width : 850,
+                    height : 450,
+                    tip:{
+                        enable:true,
+                        shadow:true
+                    },
+                    legend : {
+                        enable : true,
+                        row:1,//设置在一行上显示，与column配合使用
+                        column : 'max',
+                        valign:'top',
+                        sign:'bar',
+                        background_color:null,//设置透明背景
+                        offsetx:-80,//设置x轴偏移，满足位置需要
+                        border : true
+                    },
+                    crosshair:{
+                        enable:true,
+                        line_color:'#62bce9'
+                    },
+                    sub_option : {
+                        label:false,
+                        point_hollow : false
+                    },
+                    coordinate:{
+                        width:640,
+                        height:350,
+                        axis:{
+                            color:'#9f9f9f',
+                            width:[0,0,2,2]
+                        },
+                        grids:{
+                            vertical:{
+                                way:'share_alike',
+                                value:5
+                            }
+                        },
+                        scale:[{
+                            position:'left',
+                            start_scale:0,
+                            end_scale:100,
+                            scale_space:10,
+                            scale_size:2,
+                            scale_color:'#9f9f9f'
+                        },{
+                            position:'bottom',
+                            labels:labels
+                        }]
+                    }
+                });
+
+                //开始画图
+                line.draw();
+            });
+        </script>
+        <div id='canvasDiv' style="margin-left:25px"></div>
+    </div>
+</block>

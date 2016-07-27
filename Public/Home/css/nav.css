@@ -1,0 +1,33 @@
+body {
+	background: #dedede url(back.jpg) fixed;   
+}
+.venus-menu{
+	width: 100%;
+	margin:0;padding: 0;
+	position:relative;
+	float:left;
+	font-family: 'Open Sans', sans-serif;list-style: none;
+	background: #fff;box-shadow: 0 1px 3px #dedede;
+}
+.venus-menu li{
+	display: inline-block;
+	margin: 0;
+	padding: 0;
+	float: left;
+	line-height: 20px;position: relative;
+}
+.venus-menu > li > a{
+	padding: 18px 24px;
+	font-size: 18px;color: #777;
+	text-decoration: none;
+	display: block;
+	-webkit-transition: color 0.2s linear, background 0.2s linear;
+	-moz-transition: color 0.2s linear, background 0.2s linear;
+	-o-transition: color 0.2s linear, background 0.2s linear;
+	transition: color 0.2s linear, background 0.2s linear;
+}
+.venus-menu li:hover > a,.venus-menu li.active a{background: #8ECB8D;color: #fff;}
+.selected{background: #8ECB8D;color: #fff;}
+
+
+

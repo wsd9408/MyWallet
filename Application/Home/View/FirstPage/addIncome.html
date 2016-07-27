@@ -1,0 +1,83 @@
+<extend name="Public/base" />
+<block name="link">
+    <!-- 圆形进度条 -->
+    <script src="{$Think.const.PUBLIC_URL}Circleprogress/js/jquery.circliful.min.js"></script>
+    <link href="{$Think.const.PUBLIC_URL}Circleprogress/css/jquery.circliful.css" rel="stylesheet" type="text/css" />
+</block>
+<block name="content">
+    <!-- 内容 -->
+    <div id="main" style="padding-top:40px;">
+
+        <!--信息填写区域-->
+        <div id="incomeInfo">
+            <form class="form-horizontal" role="form" action="{:U('FirstPage/addIncomeRecord')}" method="post">
+
+                <!--金额-->
+                <div id="money" class="form-group">
+                    <label class="col-sm-3 control-label" for="moneyInput">收入金额</label>
+                    <div class="col-sm-6 controls input-group">
+                        <input id="moneyInput" class="form-control" name="money" type="text"/>
+                        <span class="input-group-addon">￥</span>
+                    </div>
+                </div>
+
+                <!--日期-->
+                <div id="date" class="form-group">
+                    <label class="col-sm-3 control-label" for="dateInput">日期</label>
+                    <div class="col-sm-6 controls input-group date" id="datetimepicker">
+                        <input id="dateInput" type="text" class="form-control" name="date">
+                        <span class="input-group-addon add-on"><i class="glyphicon glyphicon-calendar"></i></span>
+                    </div>
+                </div>
+
+                <!--类别-->
+                <div id="category" class="form-group">
+                    <label class="col-sm-3 control-label">类别</label>
+                    <div class="col-sm-6 controls input-group">
+                        <select name="category" class="form-control">
+                            <option value="零花钱">零花钱</option>
+                            <option value="生活费">生活费</option>
+                            <option value="工资">工资</option>
+                            <option value="奖金">奖金</option>
+                            <option value="其他">其他</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!--备注-->
+                <div id="remark" class="form-group">
+                    <label class="col-sm-3 control-label">备注</label>
+                    <div class="col-sm-6 controls input-group">
+                        <textarea class="form-control" name="remark" rows="3"></textarea>
+                    </div>
+                </div>
+
+                <!--提交与返回按钮-->
+                <div id="btn" class="form-group">
+                    <label class="col-sm-3 control-label"></label>
+                    <div class="col-sm-3 controls">
+                        <input type="submit" class="btn btn-success btn-lg" id="save"/>
+                    </div>
+                    <div class="col-sm-2 controls">
+                        <button class="btn btn-lg" id="return" >返回</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <!--余额圆形进度条-->
+        <div id="remain">
+            <div id="myStat" data-dimension="400" data-text="{$percent}%" data-info="资金余额{$remain}元" data-width="40" data-fontsize="50" data-percent="{$percent}" data-fgcolor="#428bca" ata-bgcolor="#ddd" data-fill="#ccc">
+            </div>
+        </div>
+    </div>
+    </div>
+    <script type="text/javascript">
+        $('#myStat').circliful();
+
+        $('#return').on('click', function(){
+            this.form.action = "{:U('FirstPage/index')}";
+        });
+
+    </script>
+</block>

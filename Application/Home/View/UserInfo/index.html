@@ -1,0 +1,55 @@
+<extend name="Public/base" />
+
+<block name="content">
+    <div class="well userInfo">
+        <div class="center">
+            <span class="col-md-6 left">用户名：</span>
+            <span class="col-md-6">{$username}</span>
+        </div>
+        <div  class="center">
+            <span class="col-md-6 left">注册时间：</span>
+            <span class="col-md-6">{$regTime}</span>
+        </div>
+        <div  class="center">
+            <span class="col-md-6 left">登录次数：</span>
+            <span class="col-md-6">{$logTime}</span>
+        </div>
+        <div  class="center">
+            <span class="col-md-6 left">上次登录时间：</span>
+            <span class="col-md-6">{$lastLogTime}</span>
+        </div>
+        <div  class="center" style="text-align: center">
+            <button class="btn btn-large btn-primary " data-toggle="modal" data-target="#updatePwd">修改密码</button>
+        </div>
+    </div>
+    <div id="updatePwd" class="modal fade" role="dialog" aria-labelledby="gridSystemModalLabel">
+        <div class="modal-dialog" role="document">
+            <form class="form-horizontal" role="form" action="{:U('UserInfo/updatePwd')}" method="post">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="gridSystemModalLabel">修改密码</h4>
+                    </div>
+                    <div id="pwd1" class="form-group">
+                        <label class="col-sm-3 control-label" for="pwd1Input">新密码</label>
+                        <div class="col-sm-6 controls input-group">
+                            <input id="pwd1Input" class="form-control" name="pwd1" type="password"/>
+                        </div>
+                    </div>
+
+                    <div id="pwd2" class="form-group">
+                        <label class="col-sm-3 control-label" for="pwd2Input">确认新密码</label>
+                        <div class="col-sm-6 controls input-group date">
+                            <input id="pwd2Input" type="password" class="form-control" name="pwd2">
+                        </div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                        <button type="submit" class="btn btn-primary">确认修改</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div><!-- /.modal -->
+</block>

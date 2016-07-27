@@ -1,0 +1,83 @@
+<extend name="Public/base" />
+
+<block name="content">
+    <link rel="stylesheet" type="text/css" href="{$Think.const.PUBLIC_URL}TimeLine/css/history.css">
+    <script type="text/javascript" src="{$Think.const.PUBLIC_URL}TimeLine/js/jquery.js"></script>
+    <script type="text/javascript" src="{$Think.const.PUBLIC_URL}TimeLine/js/jquery.easing.js"></script>
+    <script type="text/javascript" src="{$Think.const.PUBLIC_URL}TimeLine/js/history.js"></script>
+    <script type="text/javascript" src="{$Think.const.PUBLIC_URL}TimeLine/js/jquery.mousewheel.js"></script>
+    <!-- 内容 -->
+
+    <!--左侧导航栏-->
+    <div id="SideNavigation" style="margin-top: 10px;">
+        <ul class="nav nav-tabs nav-stacked">
+            <li><a href="{:U('Statistics/index')}">总览</a></li>
+            <li><a href="{:U('Statistics/Income')}">收入统计</a></li>
+            <li><a href="{:U('Statistics/Expend')}">支出统计</a></li>
+            <li class="active"><a href="{:U('Statistics/TimeLine')}">时间轴</a></li>
+        </ul>
+    </div>
+
+    <!--信息显示区域-->
+    <div id="View" style="margin-top: 11px;">
+        <div id="arrow">
+            <ul>
+                <li class="arrowup"></li>
+                <li class="arrowdown"></li>
+            </ul>
+        </div>
+
+        <div id="history">
+
+            <div class="title">
+                <h2>收支时间轴</h2>
+                <div id="circle">
+                    <div class="cmsk"></div>
+                    <div class="circlecontent">
+                        <div thisyear="2016" class="timeblock">
+                            <span class="numf"></span>
+                            <span class="nums"></span>
+                            <span class="numt"></span>
+                            <span class="numfo"></span>
+                            <div class="clear"></div>
+                        </div>
+                        <div class="timeyear">YEAR</div>
+                    </div>
+                    <a href="#" class="clock"></a>
+                </div>
+            </div>
+
+            <div id="content">
+                <ul class="list">
+                    <foreach name="record" item="value">
+                    <li>
+                        <div class="liwrap">
+                            <div class="lileft">
+                                <div class="date">
+                                    <span class="year">{$value.year}</span>
+                                    <span class="md">{$value.month}-{$value.day}</span>
+                                </div>
+                            </div>
+
+                            <div class="point"><b></b></div>
+
+                            <div class="liright">
+                                <div class="histt"><a href="#">{$value.i_e}:{$value.category}</a></div>
+                                <div class="hisct">￥{$value.money}</div>
+                            </div>
+                        </div>
+                    </li>
+                    </foreach>
+                </ul>
+            </div>
+        </div>
+        <div style="text-align:center;clear:both">
+        <div style="display:none"><script src="http://s24.cnzz.com/stat.php?id=4273731&web_id=4273731" language="JavaScript"></script><script src="http://s20.cnzz.com/stat.php?id=5240441&web_id=5240441" language="JavaScript"></script>
+            <script type="text/javascript">
+                var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+                document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Faca36f9d36d03a04d61c93f28c896386' type='text/javascript'%3E%3C/script%3E"));
+            </script>
+        </div>
+        </div>
+        </div>
+</block>

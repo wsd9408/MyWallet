@@ -1,0 +1,141 @@
+1<extend name="Public/base" />
+<block name="link">
+<!-- 圆形进度条 -->
+<script src="{$Think.const.PUBLIC_URL}Circleprogress/js/jquery.circliful.min.js"></script>
+<link href="{$Think.const.PUBLIC_URL}Circleprogress/css/jquery.circliful.css" rel="stylesheet" type="text/css" />
+</block>
+<block name="content">
+<!-- 内容 -->
+<div id="main">
+	<div id="left" style="float:left;width:45%;">
+		<!-- <a href="{:U('Index/reback')}">还原久数据</a> -->
+		账单数目统计
+		<br><br>
+		<!-- Nav tabs -->
+		<ul class="nav nav-tabs" role="tablist">
+		  <li class="active"><a href="#home" role="tab" data-toggle="tab">收支统计</a></li>
+		  <li><a href="#profile" role="tab" data-toggle="tab">收缴统计</a></li>
+		  <li><a href="#messages" role="tab" data-toggle="tab">借还统计</a></li>
+		  <li><a href="#settings" role="tab" data-toggle="tab">综合</a></li>
+		</ul>
+		<!-- Tab panes -->
+		<div class="tab-content">
+			<div class="tab-pane active" id="home">
+				<br><br>
+				<div id="left" style="float:left;">
+					<p>今天支出：￥&nbsp;<strong>{$shouzhi.todayout}</strong></p>
+					<p>今天收入：￥&nbsp;<strong>{$shouzhi.todayin}</strong></p>
+					<p>支出总额：￥&nbsp;<strong>{$shouzhi.out}</strong></p>
+					<p>收入总额：￥&nbsp;<strong>{$shouzhi.in}</strong></p>
+					<br>
+					<p class="btn btn-info">余&nbsp;额： <strong>￥&nbsp;{$shouzhi.last}</strong></p>
+				</div>
+				<div id="right" style="float:right;">
+					<div id="myStat" data-dimension="250" data-text="{$shouzhi.precent}%" data-info="资金余额" data-width="30" data-fontsize="38" data-percent="{$shouzhi.precent}" data-fgcolor="{$shouzhi.color}" data-bgcolor="#eee" data-fill="#ddd">
+					</div>
+					<script>
+					$( document ).ready(function() {
+						$('#myStat').circliful();
+					   });
+					</script>
+				</div>
+				<div style="clear:both;"></div>
+			</div>
+		  <!-- ---- -->
+			<div class="tab-pane" id="profile">
+		  		<br>
+		  	  	<div id="left" style="float:left;">
+				  <p>分配总额：￥&nbsp;{$shoujiao.out}</p>
+				  <p>收缴总额：￥&nbsp;{$shoujiao.in}</p>
+				  <p class="btn btn-info">余&nbsp;额： <strong>￥&nbsp;{$shoujiao.last}</strong></p>
+		  	  	</div>
+		  	  	<div id="right" style="float:right;">
+		  	  		<div id="myStat2" data-dimension="250" data-text="{$shoujiao.precent}%" data-info="资金余额" data-width="30" data-fontsize="38" data-percent="{$shoujiao.precent}" data-fgcolor="{$shoujiao.color}" data-bgcolor="#eee" data-fill="#ddd">
+		  	  		</div>
+					<script>
+						$( document ).ready(function() {
+							$('#myStat2').circliful();
+				   		});
+					</script>
+			  	</div>
+		  	  <div style="clear:both;"></div>
+		  	</div>
+		  	<!-- end -->
+		  	<div class="tab-pane" id="messages">
+		  		<br>
+		  	  	<div id="left" style="float:left;">
+		  	  	  <p>当前需处理统计：</p>
+				  <p>拖欠总额：￥&nbsp;{$jiehuan.out}</p>
+				  <p>借出总额：￥&nbsp;{$jiehuan.in}</p>
+				  <p class="btn btn-info">差&nbsp;额： <strong>￥&nbsp;{$jiehuan.last}</strong></p>
+		  	  	</div>
+		  	  	<div id="right" style="float:right;">
+		  	  		<div id="myStat3" data-dimension="250" data-text="{$jiehuan.precent}%" data-info="资金差额" data-width="30" data-fontsize="38" data-percent="{$jiehuan.precent}" data-fgcolor="{$jiehuan.color}" data-bgcolor="#eee" data-fill="#ddd"></div>
+					<script>
+					$( document ).ready(function() {
+						$('#myStat3').circliful();
+				   	});
+					</script>
+				</div>
+		  	  	<div style="clear:both;"></div>
+		  	</div>
+		  	<!-- end -->
+		  	<div class="tab-pane" id="settings">
+		  		<br>
+		  		<p>您的总余额：￥&nbsp;{$shouzhi.last}&nbsp;&nbsp;&nbsp;&nbsp;(其中包含借出：￥&nbsp;{$jiehuan.in})</p>
+		  		<table class="table">
+		  			<tr><td></td><td>金额</td><td>名称(用处/来源)</td></tr>
+		  			<tr><td><strong>最大支出</strong></td><td>{$maxZhi.value}</td><td>{$maxZhi.name}</td></tr>
+		  			<tr><td>月最大支出</td><td>{$maxZhi.month}</td><td>{$maxZhi.monthName}</td></tr>
+		  			<tr><td>日最大支出</td><td>{$maxZhi.day}</td><td>{$maxZhi.dayName}</td></tr>
+		  			<tr><td>(今年)平均每月支出</td><td>{$maxZhi.monthAvg}</td></tr>
+		  			<tr><td>(今年)平均每天支出</td><td>{$maxZhi.dayAvg}</td></tr>
+		  			<tr><td><strong>最大收入</strong></td><td>{$maxShou.value}</td><td>{$maxShou.name}</td></tr>
+		  			<tr><td>日最大收入</td><td>{$maxShou.day}</td><td>{$maxShou.dayName}</td></tr>
+		  			<tr><td>月最大收入</td><td>{$maxShou.month}</td><td>{$maxShou.monthName}</td></tr>
+		  			<tr><td>平均每月收入</td><td>{$maxShou.monthAvg}</td></tr>
+		  		</table>
+		  	</div>
+		</div>
+	</div>
+	<!-- youb -->
+	<div id="right" style="float:right;width:40%;">
+		
+		<div class="input-group input-group-lg">
+		  <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
+		  <input type="text" class="form-control" placeholder="请输入查询关键字" id="keywords">
+		  
+		</div>
+		
+		<br>
+		<div class="alert alert-info">
+			<table class="table table-hover table-bordered">
+				<tr><td colspan="2">[ 关键字（空格隔开 空格结束）（当前检索支出）]</td></tr>
+			</table>
+			<p>&nbsp;<a href="{:U('Index/detailQuery')}">详细查询</a></p>
+			<p class="alert alert-info">所有统计：￥&nbsp;<strong><span id="allm" style="color:green;"></span></strong></p>
+			<p class="alert alert-info">最近一个月：￥&nbsp;<strong><span id="monthm" style="color:green;"></span></strong></p>
+			<!-- <p class="alert alert-info">最近一个星期：￥<span id="weekm"></span></p> -->
+			<!-- <div></div> -->
+		</div>
+		<script type="text/javascript">
+			$(document).keydown(function(e){
+				if(!e) var e = window.event;
+				var keywords = $("input#keywords").val(); //获取关键字
+				var searchUrl = "{:U('Index/ownSearch')}"; //获取提交地址
+
+				if (keywords != null) {
+					$.post(searchUrl,{keywords:keywords},
+						function(data,status){
+							$("#allm").html(data[0]);
+							$("#monthm").html(data[1]);
+							$("#weekm").html(data[2]);
+						});
+				}
+			});
+		</script>
+	</div>
+	<div style="clear:both;"></div>
+</div>
+<div style="width:100%;height:150px;"></div>
+</block>

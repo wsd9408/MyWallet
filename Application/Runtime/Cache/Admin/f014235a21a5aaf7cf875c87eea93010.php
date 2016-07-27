@@ -1,0 +1,73 @@
+<?php if (!defined('THINK_PATH')) exit();?><!DOCTYPE>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>管理中心</title>
+    <meta name="Copyright" content="Douco Design." />
+    <link href="<?php echo (CSS_URL); ?>public.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="<?php echo (JS_URL); ?>jquery.min.js"></script>
+    <script type="text/javascript" src="<?php echo (JS_URL); ?>global.js"></script>
+</head>
+<body>
+<div id="dcWrap"> <div id="dcHead">
+    <div id="head">
+        <div class="logo"></div>
+        <div class="nav">
+            <ul>
+                <li class="M"><a href="JavaScript:void(0);" class="topAdd">新建</a>
+                    <div class="drop mTopad">
+                        <a href="/mywallet/index.php/admin/Consumer/addConsumer">用户</a>
+                        <a href="/mywallet/index.php/admin/Manager/addManager">管理员</a></div>
+                </li>
+                <li><a href="/mywallet/index.php/admin/ClearCache/cache_clear">清除缓存</a></li>
+                <li><a href="/mywallet/index.php/admin/MainPage/help">帮助</a></li>
+            </ul>
+            <ul class="navRight">
+                <li class="M noLeft"><a>您好，<?php echo ($admin); ?></a>
+                    <div class="drop mUser">
+                        <a href="/mywallet/index.php/admin/Manager/editManager">编辑个人资料</a>
+                    </div>
+                </li>
+
+                <li class="noRight"><a href="<?php echo U('MainPage/loginOut');?>">退出</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+    <!-- dcHead 结束 --> <div id="dcLeft"><div id="menu">
+        <ul class="top">
+            <li><a href="index.html"><i class="home"></i><em>管理首页</em></a></li>
+        </ul>
+        <ul>
+            <li><a href="/mywallet/index.php/admin/Consumer/index"><i class="product"></i><em>用户列表</em></a></li>
+        </ul>
+        <ul class="bot">
+            <li><a href="/mywallet/index.php/admin/DBBackup/index"><i class="backup"></i><em>数据备份</em></a></li>
+            <li><a href="/mywallet/index.php/admin/Manager/index"><i class="manager"></i><em>网站管理员</em></a></li>
+        </ul>
+    </div></div>
+    <div id="dcMain"> <!-- 当前位置 -->
+        <div id="urHere">管理中心</div>  <div id="index" class="mainBox" style="padding-top:18px;height:auto!important;height:550px;min-height:550px;">
+            <div id="douApi"></div>
+            <div class="indexBox">
+                <div >
+                    <h2>MyWaller V1.0 用户协议</h2>
+                    <p>感谢您使用 MyWallet 个人账单管理系统，希望我们的努力能为您提供一个简单、强大账单管理工具。</p>
+                    <br>
+                    <p>用户须知：本协议是您与MyWallet之间关于您使用本产品及服务的法律协议。无论您是个人或组织、盈利与否、用途如何（包括以学习和研究为目的），均需仔细阅读本协议，包括免除或者限制MyWallet责任的免责条款及对您的权利限制。请您审阅并接受或不接受本服务条款。如您不同意本服务条款及/或随时对其的修改，您应不使用或主动取消使用本产品。否则，您的任何对MyWallet的相关服务的注册、登陆、下载、查看等使用行为将被视为您对本服务条款全部的完全接受，包括接受MyWallet对服务条款随时所做的任何修改。</p>
+
+                    <p>本服务条款一旦发生变更, MyWallet将在产品官网上公布修改内容。修改后的服务条款一旦在网站公布即有效代替原来的服务条款。您可随时登陆官网查阅最新版服务条款。如果您选择接受本条款，即表示您同意接受协议各项条件的约束。如果您不同意本服务条款，则不能获得使用本服务的权利。您若有违反本条款规定，MyWallet有权随时中止或终止您对MyWallet产品的使用资格并保留追究相关法律责任的权利。</p>
+
+                    <p>在理解、同意、并遵守本协议的全部条款后，方可开始使用MyWallet产品。您也可能与MyWallet直接签订另一书面协议，以补充或者取代本协议的全部或者任何部分。</p>
+
+                    <p>MyWallet拥有MyWallet的全部知识产权，包括商标和著作权。本软件只供许可协议，并非出售。MyWallet只允许您在遵守本协议各项条款的情况下复制、下载、安装、使用或者以其他方式受益于本软件的功能或者知识产权。</p>
+                    <p>MyWallet遵循ThinkPHP开源协议，并且用户可以永久使用（但不包括其衍生产品、插件或者服务）。
+                </div>
+
+            </div>
+        </div>
+        <div class="clear"></div>
+        <div class="clear"></div> </div>
+</div>
+</body>
+</html>

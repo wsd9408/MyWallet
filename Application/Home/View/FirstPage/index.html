@@ -1,0 +1,46 @@
+<extend name="Public/base" />
+<block name="link">
+<!-- 圆形进度条 -->
+	<script src="{$Think.const.PUBLIC_URL}Circleprogress/js/jquery.circliful.min.js"></script>
+	<link href="{$Think.const.PUBLIC_URL}Circleprogress/css/jquery.circliful.css" rel="stylesheet" type="text/css" />
+</block>
+<block name="content">
+<!-- 内容 -->
+<div id="main" style="padding-top:40px;">
+	<!--增加收入记录按钮-->
+	<div id="addIncome">
+		<form>
+			<button id="btnAddIncome" class="btn btn-primary btnAdd">
+				增加收入记录
+			</button>
+
+		</form>
+
+	</div>
+
+	<!--余额圆形进度条-->
+	<div id="remain">
+		<div id="myStat" data-dimension="400" data-text="{$percent}%" data-info="资金余额{$remain}元" data-width="40" data-fontsize="50" data-percent="{$percent}" data-fgcolor="#428bca" ata-bgcolor="#ddd" data-fill="#ccc">
+		</div>
+
+	</div>
+
+	<!--增加支出记录按钮-->
+	<div id="addExpend">
+		<form>
+			<button id="btnAddExpend" class="btn btn-primary btnAdd">增加支出记录</button>
+		</form>
+	</div>
+</div>
+	<script type="text/javascript">
+		$('#myStat').circliful();
+
+		$('#btnAddIncome').on('click', function(){
+				this.form.action = "{:U('FirstPage/addIncome')}";
+		});
+
+		$('#btnAddExpend').on('click', function(){
+			this.form.action = "{:U('FirstPage/addExpend')}";
+		});
+	</script>
+</block>

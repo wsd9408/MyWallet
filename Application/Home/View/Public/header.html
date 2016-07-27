@@ -1,0 +1,37 @@
+<!-- 导航菜单 -->
+<div style="margin:30px auto"></div>
+<nav class="navbar navbar-inverse" style="background-color: #051923; padding-top:8px;padding-bottom: 8px">
+	<div class="container-fluid" style="padding-left:0">
+		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+			<ul class="nav navbar-nav" style="font-size: 21px;">
+				<li id="FirstPageURL"><a href="{:U('FirstPage/index')}">首页<span class="sr-only">(current)</span></a></li>
+				<li id="ExpendURL"><a href="{:U('Expend/index')}">支出<span class="sr-only">(current)</span></a></li>
+				<li id="IncomeURL"><a href="{:U('Income/index')}">收入<span class="sr-only">(current)</span></a></li>
+				<li id="StatisticsURL"><a href="{:U('Statistics/index')}">统计</a></li>
+			</ul>
+			<ul class="nav navbar-nav navbar-right">
+				<li class="dropdown">
+					<a style="font-size: 23px;" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style="float:right;">{$username}<span class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li><a href="{:U('UserInfo/index')}">个人中心</a></li>
+						<li><a href="#" onclick="logoutcfm();">注销</a></li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</div>
+</nav>
+<script type="text/javascript">
+	var nowurl = "{$controller_name}URL";
+	$(function(){
+		$("#"+nowurl).attr("class","active");
+	});
+
+	function logoutcfm(){
+		if(confirm("注销当前登录?")){
+			var url="{:U('Login/logout')}";
+			window.location.href=url;
+		}
+	}
+</script>
+		
